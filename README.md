@@ -18,6 +18,17 @@ The core value of the app is its **strict-matching rule**: a recipe is only sugg
 - Settings screen with theme override (light / dark / system) and units preference
 - Light and dark mode support with a custom Material 3 colour palette
 
+## Screens
+
+- **Splash / Welcome** — brief branded intro on first launch
+- **Onboarding** — three-card first-run walkthrough of the pantry-to-recipe flow
+- **Pantry** — list of all current ingredients with add / edit / delete
+- **Add / Edit Ingredient** — form with input validation
+- **Suggested Recipes** — recipes the user can cook right now, driven by the strict-matching rule
+- **Recipe Detail** — full ingredient list and preparation method
+- **Settings** — theme override (light / dark / system) and units preference
+- **Almost There** *(bonus)* — recipes missing exactly one ingredient
+
 ## Technology
 
 | Layer | Choice |
