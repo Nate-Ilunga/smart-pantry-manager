@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Palette E (Muted Olive & Ochre) — LIGHT MODE.
+         Semantic names say what each colour is FOR, not what it is.
+         Layouts never use raw hex — they reference these through the theme. -->
+
+    <color name="palette_surface">#DEE2C6</color>           <!-- screen background -->
+    <color name="palette_primary">#37402B</color>           <!-- titles, filled buttons -->
+    <color name="palette_on_primary">#DEE2C6</color>        <!-- text/icons ON primary -->
+    <color name="palette_accent">#C47A3D</color>            <!-- chips, FAB, highlights -->
+    <color name="palette_on_accent">#FFF3E8</color>         <!-- text/icons ON accent -->
+    <color name="palette_on_surface">#37402B</color>        <!-- main text on background -->
+    <color name="palette_on_surface_muted">#5F6B4E</color>  <!-- hints, secondary text -->
+
+    <color name="palette_warning">#D89614</color>           <!-- expiring-soon amber -->
+    <color name="palette_destructive">#B00020</color>       <!-- delete actions -->
+    <color name="palette_on_destructive">#FFFFFF</color>    <!-- text on delete buttons -->
+
+    <color name="palette_surface_container">#D4D9BA</color> <!-- cards sit on this -->
+    <color name="palette_outline">#9BA48A</color>           <!-- dividers, input borders -->
 </resources>

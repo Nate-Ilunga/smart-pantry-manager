@@ -1,9 +1,31 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base theme holds all colour-role bindings for Smart Pantry Manager.
+         Material 3 components ask for roles like colorPrimary; we map each
+         role onto one of our palette_* colour names. Those names resolve to
+         light values here and to dark values via values-night/colors.xml. -->
+
     <style name="Base.Theme.SmartPantryManager" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/palette_primary</item>
+        <item name="colorOnPrimary">@color/palette_on_primary</item>
+
+        <!-- our accent fills Material's "secondary" role -->
+        <item name="colorSecondary">@color/palette_accent</item>
+        <item name="colorOnSecondary">@color/palette_on_accent</item>
+
+        <item name="colorError">@color/palette_destructive</item>
+        <item name="colorOnError">@color/palette_on_destructive</item>
+
+        <item name="android:colorBackground">@color/palette_surface</item>
+        <item name="colorSurface">@color/palette_surface</item>
+        <item name="colorOnSurface">@color/palette_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/palette_on_surface_muted</item>
+        <item name="colorSurfaceContainer">@color/palette_surface_container</item>
+        <item name="colorOutline">@color/palette_outline</item>
+
+        <item name="android:statusBarColor">@color/palette_surface</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <!-- Public theme name the app references in AndroidManifest.xml -->
     <style name="Theme.SmartPantryManager" parent="Base.Theme.SmartPantryManager" />
 </resources>

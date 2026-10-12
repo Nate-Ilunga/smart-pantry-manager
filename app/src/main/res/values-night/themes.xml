@@ -1,7 +1,29 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Dark-mode Base theme. Same role→palette mappings as the light theme;
+         the palette_* names resolve to the dark values in values-night/colors.xml.
+         Only difference from light: light status-bar icons, since our dark
+         background needs pale icons to stay legible. -->
+
     <style name="Base.Theme.SmartPantryManager" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/palette_primary</item>
+        <item name="colorOnPrimary">@color/palette_on_primary</item>
+
+        <item name="colorSecondary">@color/palette_accent</item>
+        <item name="colorOnSecondary">@color/palette_on_accent</item>
+
+        <item name="colorError">@color/palette_destructive</item>
+        <item name="colorOnError">@color/palette_on_destructive</item>
+
+        <item name="android:colorBackground">@color/palette_surface</item>
+        <item name="colorSurface">@color/palette_surface</item>
+        <item name="colorOnSurface">@color/palette_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/palette_on_surface_muted</item>
+        <item name="colorSurfaceContainer">@color/palette_surface_container</item>
+        <item name="colorOutline">@color/palette_outline</item>
+
+        <item name="android:statusBarColor">@color/palette_surface</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
+
+    <style name="Theme.SmartPantryManager" parent="Base.Theme.SmartPantryManager" />
 </resources>

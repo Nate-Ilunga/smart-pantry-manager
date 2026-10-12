@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Palette E — DARK MODE. Same names as values/colors.xml, darker values.
+         Android auto-loads this file when the phone is in dark mode. -->
+
+    <color name="palette_surface">#1E241A</color>           <!-- deep forest-olive bg -->
+    <color name="palette_primary">#C8D4A8</color>           <!-- light olive -->
+    <color name="palette_on_primary">#1E241A</color>
+    <color name="palette_accent">#E5A66B</color>            <!-- lighter ochre -->
+    <color name="palette_on_accent">#1E241A</color>
+    <color name="palette_on_surface">#E8EDD4</color>        <!-- light text on dark bg -->
+    <color name="palette_on_surface_muted">#7E8869</color>
+
+    <color name="palette_warning">#D89614</color>
+    <color name="palette_destructive">#CF6679</color>       <!-- softer red for dark bg -->
+    <color name="palette_on_destructive">#1E241A</color>
+
+    <color name="palette_surface_container">#2A3024</color>
+    <color name="palette_outline">#5A6450</color>
+</resources>
