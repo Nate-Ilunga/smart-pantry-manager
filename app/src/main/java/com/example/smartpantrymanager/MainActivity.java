@@ -1,5 +1,7 @@
 package com.example.smartpantrymanager;
 
+import android.content.Intent;
+import com.example.smartpantrymanager.ui.AddEditActivity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -29,15 +31,17 @@ public class MainActivity extends AppCompatActivity {
         layoutEmpty = findViewById(R.id.layoutEmpty);
 
         adapter = new PantryAdapter(item -> {
-            // Row tapped — opens the edit screen in a later step.
+            // Row tapped — open the edit screen for this item.
+            Intent intent = new Intent(this, AddEditActivity.class);
+            intent.putExtra(AddEditActivity.EXTRA_ITEM_ID, item.id);
+            startActivity(intent);
         });
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(adapter);
 
         ExtendedFloatingActionButton fab = findViewById(R.id.fabAdd);
-        fab.setOnClickListener(v -> {
-            // Opens Add/Edit screen — wired up next step.
-        });
+        fab.setOnClickListener(v ->
+                startActivity(new Intent(this, AddEditActivity.class)));
     }
 
     @Override
