@@ -25,6 +25,9 @@
         <activity
             android:name=".ui.AddEditActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.SuggestedActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
