@@ -1,5 +1,6 @@
 package com.example.smartpantrymanager.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -41,7 +42,9 @@ public class SuggestedActivity extends AppCompatActivity {
         layoutEmpty = findViewById(R.id.layoutEmpty);
 
         adapter = new RecipeAdapter(recipe -> {
-            // Recipe tapped — opens Recipe Detail in a later step.
+            Intent intent = new Intent(this, RecipeDetailActivity.class);
+            intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.id);
+            startActivity(intent);
         });
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(adapter);
