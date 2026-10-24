@@ -26,6 +26,9 @@ public class SmartPantryApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        // Apply the user's saved theme choice app-wide.
+        androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
+                com.example.smartpantrymanager.ui.SettingsActivity.getThemeMode(this));
 
         // Seed the recipe collection off the main thread.
         // DatabaseSeeder checks whether recipes already exist, so this

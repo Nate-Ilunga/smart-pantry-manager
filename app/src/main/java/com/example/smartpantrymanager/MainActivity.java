@@ -1,5 +1,5 @@
 package com.example.smartpantrymanager;
-
+import com.example.smartpantrymanager.ui.SettingsActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -59,8 +59,12 @@ public class MainActivity extends AppCompatActivity {
         // Toolbar menu. The search icon opens the Suggested Recipes screen.
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setOnMenuItemClickListener(menuItem -> {
-            if (menuItem.getItemId() == R.id.action_suggested) {
+            int id = menuItem.getItemId();
+            if (id == R.id.action_suggested) {
                 startActivity(new Intent(this, SuggestedActivity.class));
+                return true;
+            } else if (id == R.id.action_settings) {
+                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             }
             return false;
