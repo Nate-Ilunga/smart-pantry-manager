@@ -1,7 +1,6 @@
 package com.example.smartpantrymanager;
 
 import android.content.Intent;
-import com.example.smartpantrymanager.ui.AddEditActivity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartpantrymanager.data.AppDatabase;
 import com.example.smartpantrymanager.data.PantryItem;
+import com.example.smartpantrymanager.ui.AddEditActivity;
 import com.example.smartpantrymanager.ui.PantryAdapter;
+import com.example.smartpantrymanager.ui.SuggestedActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.List;
@@ -30,23 +32,45 @@ public class MainActivity extends AppCompatActivity {
         recycler = findViewById(R.id.recyclerPantry);
         layoutEmpty = findViewById(R.id.layoutEmpty);
 
-        adapter = new PantryAdapter(item -> {
-            // Row tapped — open the edit screen for this item.
-            Intent intent = new Intent(this, AddEditActivity.class);
-            intent.putExtra(AddEditActivity.EXTRA_ITEM_ID, item.id);
-            startActivity(intent);
+        // Set up the pantry list. Tapping a row opens it in the edit screen.
+        adapter = new PantryAdapter(new PantryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(PantryItem item) {
+                // Tap a row → edit it.
+                Intent intent = new Intent(MainActivity.this, AddEditActivity.class);
+                intent.putExtra(AddEditActivity.EXTRA_ITEM_ID, item.id);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(PantryItem item) {
+                // Long-press a row → confirm, then delete.
+                confirmDelete(item);
+            }
         });
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(adapter);
 
+        // Add button opens the add screen with no data (add mode).
         ExtendedFloatingActionButton fab = findViewById(R.id.fabAdd);
         fab.setOnClickListener(v ->
                 startActivity(new Intent(this, AddEditActivity.class)));
+
+        // Toolbar menu. The search icon opens the Suggested Recipes screen.
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.action_suggested) {
+                startActivity(new Intent(this, SuggestedActivity.class));
+                return true;
+            }
+            return false;
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        // Reload whenever the screen is shown so edits/additions appear immediately.
         loadPantryItems();
     }
 
@@ -61,6 +85,23 @@ public class MainActivity extends AppCompatActivity {
                 layoutEmpty.setVisibility(empty ? View.VISIBLE : View.GONE);
                 recycler.setVisibility(empty ? View.GONE : View.VISIBLE);
             });
+        });
+    }
+
+    private void confirmDelete(PantryItem item) {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Delete item")
+                .setMessage("Remove " + item.name + " from your pantry?")
+                .setPositiveButton("Delete", (dialog, which) -> deleteItem(item))
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void deleteItem(PantryItem item) {
+        SmartPantryApp.getDatabaseExecutor().execute(() -> {
+            AppDatabase db = AppDatabase.getInstance(this);
+            db.pantryDao().delete(item);
+            runOnUiThread(this::loadPantryItems);  // reload the list after deleting
         });
     }
 }

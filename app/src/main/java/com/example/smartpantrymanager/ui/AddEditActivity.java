@@ -46,7 +46,7 @@ public class AddEditActivity extends AppCompatActivity {
 
         // Populate the unit dropdown.
         inputUnit.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, UNITS));
+                android.R.layout.simple_dropdown_item_1line, UNITS));
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());

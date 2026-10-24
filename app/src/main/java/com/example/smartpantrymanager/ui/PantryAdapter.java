@@ -18,6 +18,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
 
     public interface OnItemClickListener {
         void onItemClick(PantryItem item);
+        void onItemLongClick(PantryItem item);
     }
 
     private List<PantryItem> items = new ArrayList<>();
@@ -54,6 +55,10 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         }
 
         holder.itemView.setOnClickListener(v -> clickListener.onItemClick(item));
+        holder.itemView.setOnLongClickListener(v -> {
+            clickListener.onItemLongClick(item);
+            return true;  // true = we handled it, don't also fire a normal click
+        });
     }
 
     @Override
